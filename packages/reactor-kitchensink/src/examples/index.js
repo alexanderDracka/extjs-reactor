@@ -77,7 +77,7 @@ import ContainerField from './FormFields/ContainerField/ContainerField';
 import Video from './Video/Video';
 import Audio from './Audio/Audio';
 import ProgressBar from './ProgressBar/ProgressBar';
-import EdgeMenu from './EdgeMenu/EdgeMenu';
+import ActionSheet from './ActionSheet/ActionSheet';
 import ToolTip from './ToolTip/ToolTip';
 import Picker from './Picker/Picker';
 import TouchEvents from './TouchEvents/TouchEvents';
@@ -208,6 +208,7 @@ import Files from './DragAndDrop/Files/Files';
 const root = {
     id: 'root',
     children: [
+        { text: 'ActionSheet', component: ActionSheet, layout: 'center' },        
         { text: 'Animations', component: Animations },
         { text: 'Buttons', children: [
             { text: 'Button', component: Button, layout: 'center' },
@@ -314,7 +315,6 @@ const root = {
             { text: 'Files', component: Files }
         ]},
         { text: 'Draw', component: Draw },
-        { text: 'EdgeMenu', component: EdgeMenu, layout: 'center' },
         { text: 'Form Fields', children: [
             { text: 'CheckBoxField', component: CheckBoxField, layout: 'center' },
             { text: 'ComboBoxField', component: ComboBoxField, layout: 'center' },
