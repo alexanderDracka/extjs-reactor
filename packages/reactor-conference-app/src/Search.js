@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Toolbar, EdgeMenu, SearchField, List, Button } from '@extjs/ext-react';
+import { Toolbar, ActionSheet, SearchField, List, Button } from '@extjs/ext-react';
 import { connect } from 'react-redux';
 import { toggleSearch, search } from './actions';
 import { Template } from '@extjs/reactor';
@@ -37,7 +37,7 @@ class Search extends Component {
         const { dispatch, store, query='', showSearch } = this.props;
 
         return (
-            <EdgeMenu 
+            <ActionSheet 
                 height={Ext.Viewport.getHeight()} 
                 layout="vbox" 
                 onShow={this.onShow} 
@@ -57,7 +57,7 @@ class Search extends Component {
                     showTime
                     eagerLoad
                 />
-            </EdgeMenu>
+            </ActionSheet>
         )
     }
 
