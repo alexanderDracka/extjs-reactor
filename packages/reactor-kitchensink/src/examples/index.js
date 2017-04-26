@@ -1,3 +1,5 @@
+import ActionSheet from './ActionSheet/ActionSheet';
+
 // Grids
 import BasicGrid from './Grid/BasicGrid/BasicGrid';
 import GroupedGrid from './Grid/GroupedGrid/GroupedGrid';
@@ -217,6 +219,7 @@ const root = {
     text: 'All',
     children: [
         { text: 'Components', children: [
+            { text: 'ActionSheet', component: ActionSheet },
             { text: 'Buttons', children: [
                 { text: 'Button', component: Button, layout: 'center' },
                 { text: 'SegmentedButton', component: SegmentedButton, layout: 'center' },
