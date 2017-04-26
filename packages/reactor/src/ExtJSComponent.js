@@ -94,6 +94,7 @@ export default class ExtJSComponent extends Component {
     receiveComponent(nextComponent, transaction, context) {
         if (this.cmp.destroyed) return;
         const props = nextComponent.props;
+        this._rushProps(this._currentElement.props, props);
         this.updateChildren(this._applyDefaults(props), transaction, context);
         this._applyProps(this._currentElement.props, props);
         this._currentElement = nextComponent;
@@ -301,6 +302,19 @@ export default class ExtJSComponent extends Component {
         })
     }
 
+    _rushProps(oldProps, newProps) {
+        const rushConfigs = this.extJSClass.__reactorUpdateConfigsBeforeChildren;
+        if (!rushConfigs) return;
+        const oldConfigs = {}, newConfigs = {}
+
+        for (let name in rushConfigs) {
+            oldConfigs[name] = oldProps[name];
+            newConfigs[name] = newProps[name]
+        }
+
+        this._applyProps(oldConfigs, newConfigs);
+    }
+
     /**
      * Calls config setters for all react props that have changed
      * @private
@@ -465,6 +479,8 @@ const ContainerMixin = Object.assign({}, ReactMultiChild.Mixin, {
      * @protected
      */
     moveChild(child, afterNode, toIndex, lastIndex) {
+        if (this.cmp._reactorIgnoreOrder) return; // maintaining order in certain components, like Transition's container, can cause problems with animations, _reactorIgnoreOrder gives us a way to opt out in such scenarios
+
         if (toIndex === child._mountIndex) return; // only move child if the actual mount index has changed
         
         const fitLayout = Ext.layout && (Ext.layout.Fit || Ext.layout.FitLayout);
