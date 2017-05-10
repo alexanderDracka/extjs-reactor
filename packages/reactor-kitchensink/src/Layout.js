@@ -78,13 +78,13 @@ class Layout extends Component {
                     onLeafItemTap={(self, list, index, target, node) => this.onNavChange(node)}
                     flex={1}
                 >
-                    { component && (
-                        <Container rel="detailCard" layout="fit">
-                            <Container key={selectedNavNode.get('text')} layout={layout} autoSize={layout !== 'fit'}>
-                                { layout === 'fit' ? example : <Container scrollable>{ example }</Container> }
+                    <Container rel="detailCard" layout="fit">
+                        { component && (
+                            <Container key={selectedNavNode.get('text')} layout={layout} scrollable={layout==='auto'} autoSize={layout !== 'fit'}>
+                                { layout === 'fit' ? example : <Container scrollable={layout==='center'}>{ example }</Container> }
                             </Container>
-                        </Container>
-                    ) }
+                        ) }
+                    </Container>
                 </NestedList>
             )
         } else {
@@ -109,7 +109,7 @@ class Layout extends Component {
                             collapsed={!showTree}
                         /> 
                         <Breadcrumbs docked="top" node={selectedNavNode}/>
-                        <Transition flex={1} type="slide" bindDirectionToLocation padding="30">
+                        <Transition type="slide" bindDirectionToLocation padding="30">
                             { component ? (
                                 <Container layout={layout} scrollable key={selectedNavNode.id} autoSize={layout !== 'fit'}>
                                     { layout === 'fit' ? (
@@ -134,7 +134,7 @@ class Layout extends Component {
                     <Button 
                         align="right" 
                         iconCls={'x-font-icon ' + (showCode ? 'md-icon-close' : 'md-icon-code') }
-                        ui="fab app-show-code" 
+                        ui="fab" 
                         top={Ext.os.is.Desktop ? 20 : 35}
                         right={21}
                         zIndex={1000}
