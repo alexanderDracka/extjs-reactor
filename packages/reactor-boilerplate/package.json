@@ -7,7 +7,7 @@
   "scripts": {
     "clean": "rimraf build",
     "start": "webpack-dev-server --progress --colors",
-    "build": "npm run clean && cross-env NODE_ENV=production webpack-dev-server --env.prod=true --progress --colors",
+    "build": "npm run clean && cross-env NODE_ENV=production webpack --env.prod=true --progress --colors",
     "prod": "cross-env NODE_ENV=production webpack-dev-server --env.prod=true --progress --colors"
   }, 
   "author": "Sencha, Inc.",
