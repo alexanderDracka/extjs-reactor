@@ -77,7 +77,6 @@ export default class EditableGrid extends Component {
                     width="125" 
                     dataIndex="lastChange" 
                     formatter="date('m/d/Y')" 
-                    editable 
                 >
                     <DatePickerField required validators={{type:"date", message:"Invalid date"}}/>
                 </Column>
